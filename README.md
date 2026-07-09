@@ -1,73 +1,126 @@
-# React + TypeScript + Vite
+# Emerson SE — Portfólio Pessoal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Portfólio pessoal de **Emerson Ibraimo (DevStore)**, desenvolvedor Full Stack baseado em Maputo, Moçambique.
 
-Currently, two official plugins are available:
+**Live:** [emerson-se.web.app](https://emerson-se.web.app)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend
+| Tecnologia | Versão |
+|---|---|
+| React | 19 |
+| TypeScript | 6 |
+| Vite | 8 |
+| Tailwind CSS | 4 |
+| React Router DOM | 7 |
+| Framer Motion | 12 |
+| Lucide React | — |
 
-## Expanding the ESLint configuration
+### Backend
+| Tecnologia | Versão |
+|---|---|
+| NestJS | 11 |
+| TypeScript | 5.7 |
+| Firebase Admin SDK | 13 |
+| Nodemailer (Gmail SMTP) | 6.9 |
+| class-validator / class-transformer | — |
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Infraestrutura
+- **Frontend:** Firebase Hosting (`emerson-se`)
+- **Backend:** Render (Node.js)
+- **Base de dados:** Firestore (colecção `contactos`)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Funcionalidades
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **Hero animado** — Terminal interativo com efeito typewriter
+- **Secção Sobre** — Manifesto pessoal + grelha de estatísticas
+- **Toolkit** — Tecnologias organizadas por categoria (Frontend, Backend, Base de Dados, Ferramentas)
+- **Projectos** — Destaque de 2 projectos com links live e GitHub
+- **Contactos** — Formulário de contacto com backend NestJS + notificação por email
+- **Roteamento** — Home `/` e página dedicada de projectos `/projectos`
+- **Design responsivo** — Tailwind CSS, tipografia Inter + Space Grotesk + JetBrains Mono
+
+---
+
+## Estrutura
+
+```
+emerson-se/
+├── src/                    # Frontend React
+│   ├── components/         # Componentes (Header, Hero, Sobre, Toolkit, Projectos, Contactos, Footer, TerminalCard)
+│   ├── pages/              # Páginas (Home, ProjectosPage)
+│   ├── assets/             # Imagens estáticas
+│   └── index.css           # Tema, animações, Tailwind
+├── backend/                # API NestJS
+│   └── src/
+│       ├── config/         # Configuração + validação de env
+│       ├── firebase/       # Módulo Firebase Admin
+│       ├── email/          # Serviço de email (Nodemailer)
+│       └── modules/contactos/  # CRUD contactos (POST /contactos)
+├── public/                 # Estáticos (favicon, CV, icons)
+├── project-log/            # Documentação do desenvolvimento
+└── firebase.json           # Config Firebase Hosting + Firestore
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Desenvolvimento
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+# Frontend
+npm install
+npm run dev        # http://localhost:5173
+
+# Backend
+cd backend
+npm install
+npm run start:dev  # http://localhost:3000
 ```
+
+### Variáveis de ambiente (backend)
+
+Copie `.env.example` para `.env` e preencha:
+
+```
+PORT=3000
+FRONTEND_URL=https://emerson-se.web.app
+GMAIL_USER=seu-email@gmail.com
+GMAIL_PASS=sua-password-de-app
+FIREBASE_PROJECT_ID=emerson-se
+FIREBASE_CLIENT_EMAIL=...
+FIREBASE_PRIVATE_KEY=...
+```
+
+---
+
+## API
+
+| Método | Rota | Descrição |
+|---|---|---|
+| POST | `/contactos` | Envia mensagem de contacto |
+
+**Body:** `{ nome: string, email: string, mensagem: string (min 10 caracteres) }`
+
+---
+
+## Deploy
+
+### Frontend
+```bash
+npm run build
+firebase deploy --only hosting
+```
+
+### Backend
+O backend está configurado para deploy no Render. Consulte `backend/package.json` para o script de build.
+
+---
+
+## Licença
+
+MIT
