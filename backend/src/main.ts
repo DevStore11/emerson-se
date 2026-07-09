@@ -8,7 +8,7 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const frontendUrl = configService.get<string>('frontendUrl');
-  const port = configService.get<number>('port');
+  const port = configService.get<number>('port',3000);
 
   app.useGlobalPipes(
     new ValidationPipe({
