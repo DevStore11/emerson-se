@@ -32,8 +32,8 @@ export function Contact() {
                 <Mail className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] uppercase text-white/40 tracking-widest block font-bold mb-1">EMAIL ME</span>
-                <a href="mailto:emerson@architect.dev" className="text-lg font-medium hover:text-brand-purple transition-colors">emerson@architect.dev</a>
+                <span className="text-[10px] uppercase text-white/40 tracking-widest block font-bold mb-1">Meu EMAIL</span>
+                <a href="mailto:cardosoemerson501@gmail.com" className="text-lg font-medium hover:text-brand-purple transition-colors">cardosoemerson501@gmail.com</a>
               </div>
             </div>
 
@@ -42,8 +42,8 @@ export function Contact() {
                 <MapPin className="w-5 h-5" />
               </div>
               <div>
-                <span className="text-[10px] uppercase text-white/40 tracking-widest block font-bold mb-1">LOCATION</span>
-                <p className="text-lg font-medium">Digital Nomad / Remote</p>
+                <span className="text-[10px] uppercase text-white/40 tracking-widest block font-bold mb-1">Localização</span>
+                <p className="text-lg font-medium">Cidade de Maputo, Moçambique</p>
               </div>
             </div>
 
@@ -51,7 +51,7 @@ export function Contact() {
                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-lg hover:bg-white/5 transition-colors text-white/60 hover:text-white">
                  <LinkedinIcon />
                </a>
-               <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-lg hover:bg-white/5 transition-colors text-white/60 hover:text-white">
+               <a href="https://github.com/DevStore11" target="_blank" rel="noopener noreferrer" className="p-3 border border-white/10 rounded-lg hover:bg-white/5 transition-colors text-white/60 hover:text-white">
                  <GithubIcon />
                </a>
             </div>
@@ -62,7 +62,7 @@ export function Contact() {
            <form className="space-y-6">
              <div className="grid grid-cols-2 gap-6">
                <div className="space-y-2">
-                 <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">NAME</label>
+                 <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">NOME</label>
                  <input 
                    type="text" 
                    placeholder="Seu nome"
@@ -79,7 +79,7 @@ export function Contact() {
                </div>
              </div>
              <div className="space-y-2">
-               <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">MESSAGE</label>
+               <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">MENSAGEM</label>
                <textarea 
                  rows={5}
                  placeholder="Como posso ajudar?"

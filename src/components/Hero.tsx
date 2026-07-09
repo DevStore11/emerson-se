@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
+import { TerminalCard } from "./TerminalCard";
 
 export function Hero() {
   return (
@@ -20,36 +21,35 @@ export function Hero() {
             Transformando lógica complexa em experiências digitais fluidas. 
             Especialista em arquitetar sistemas escaláveis com estética editorial.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <button className="btn-primary">
-              Contact Me <ArrowRight className="w-4 h-4 ml-1" />
-            </button>
-            <button className="btn-outline">
-              Download CV <Download className="w-4 h-4 ml-1" />
-            </button>
-          </div>
+         <div className="flex flex-wrap gap-4">
+         <button className="btn-primary" onClick={() => window.open("https://wa.me/25863582513", "_blank")}>
+          Entrar em contacto <ArrowRight className="w-4 h-4 ml-1" />
+          </button>
+          <button className="btn-outline" onClick={() => window.open("/Emerson_CV_preenchido.pdf", "_blank")}>
+           Ver CV<Download className="w-4 h-4 ml-1" />
+          </button>
+      </div>
         </motion.div>
 
+        {/* ✅ Substituído aqui */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative aspect-square"
+          className="relative flex items-center justify-center"
         >
           <div className="absolute inset-0 bg-brand-purple/20 rounded-3xl blur-[100px]" />
-          <img 
-            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" 
-            alt="Emerson Portrait" 
-            className="relative z-10 w-full h-full object-cover rounded-3xl grayscale brightness-110 contrast-125"
-            referrerPolicy="no-referrer"
-          />
+          <div className="relative z-10 w-full max-w-sm">
+            <TerminalCard />
+          </div>
         </motion.div>
+
       </div>
       <div className="flex justify-center mt-20">
-          <div className="flex flex-col items-center gap-2">
-            <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">Scroll to explore</span>
-            <div className="w-[1px] h-12 bg-gradient-to-b from-brand-purple to-transparent" />
-          </div>
+        <div className="flex flex-col items-center gap-2">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-white/40">Explora mais abaixo</span>
+          <div className="w-[1px] h-12 bg-linear-to-b from-brand-purple to-transparent" />
+        </div>
       </div>
     </section>
   );

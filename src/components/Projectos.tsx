@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import {  ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+
 
 const projects = [
   {
@@ -7,22 +9,22 @@ const projects = [
     tag: "E-LEARNING HIGH-END",
     title: "Academia de FIFA",
     description: "Plataforma de e-learning focada em performance competitiva. Arquitetura robusta para gestão de lives, cursos e analytics em tempo real.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200",
-    tech: ["REACT", "NODE.JS", "POSTGRESQL"],
-    link: "#",
-    github: "#"
+    image: "/img/Play.png",
+    tech: ["Html", "css", "js"],
+    link: "https://academiadefifa.com",
+    github: "https://github.com/DevStore11/Academia"
   },
   {
     id: "02",
-    tag: "TOURISM & CULTURE",
+    tag: "Turismo & Cultura",
     title: "Bela África Austral",
     description: "Experiência imersiva de turismo digital. Foco total em estética editorial, performance de carregamento e UX fluida para reservas complexas.",
-    image: "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&q=80&w=1200",
-    tech: ["NEXT.JS", "TAILWINDCSS", "PRISMA"],
-    link: "#",
+    image: "/img/Bela.png",
+    tech: ["Html", "Css", "js"],
+    link: "https://bela-africa-austral.web.app/",
     github: "#"
   }
-];
+]
 
 
 const GithubIcon = () => (
@@ -33,20 +35,24 @@ const GithubIcon = () => (
 
 
 export function Projects() {
+  const navigate = useNavigate();
+
   return (
     <section id="projetos" className="py-24 bg-white/[0.02]">
       <div className="container-custom">
-        <div className="flex justify-between items-end mb-16">
-          <div>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-brand-teal mb-4 block font-bold">PORTFOLIO DE ELITE</span>
-            <h2 className="text-5xl md:text-7xl font-bold">
-              Projetos <span className="text-white/30 italic font-medium">Selecionados</span>
-            </h2>
-          </div>
-          <button className="hidden sm:flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors uppercase tracking-widest font-bold">
-            Arquivo Completo <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+  <div>
+    <span className="text-[10px] uppercase tracking-[0.3em] text-brand-teal mb-4 block font-bold">PORTFOLIO DE ELITE</span>
+    <h2 className="text-5xl md:text-7xl font-bold">
+      Projetos <span className="text-white/30 italic font-medium">Selecionados</span>
+    </h2>
+  </div>
+  <button
+    onClick={() => navigate("/projectos")}
+    className="flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors uppercase tracking-widest font-bold">
+      Ver mais Projetos <ArrowRight className="w-4 h-4" />
+  </button>
+</div>
 
         <div className="space-y-32">
           {projects.map((project, i) => (

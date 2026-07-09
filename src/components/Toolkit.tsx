@@ -4,22 +4,22 @@ const technologies = [
   {
     category: "FRONTEND",
     icon: <Layers className="w-5 h-5 text-brand-teal" />,
-    items: ["React", "Next.js", "TailwindCSS", "TypeScript"]
+    items: ["React", "Html", "TailwindCSS", "TypeScript","css","javascript"]
   },
   {
     category: "BACKEND",
     icon: <Code2 className="w-5 h-5 text-brand-purple" />,
-    items: ["Node.js", "Express", "Python", "NestJS"]
+    items: ["Node.js", "Java", "Spring Boot", "NestJS","C#"]
   },
   {
     category: "DATABASE",
     icon: <Database className="w-5 h-5 text-brand-teal" />,
-    items: ["PostgreSQL", "MongoDB", "Redis"]
+    items: ["SQL Server", "NoSql", "MySql"]
   },
   {
     category: "TOOLS",
     icon: <Wrench className="w-5 h-5 text-brand-purple" />,
-    items: ["Docker", "Git", "Figma", "AWS"]
+    items: ["Docker", "Git", "Firebase"]
   }
 ];
 
