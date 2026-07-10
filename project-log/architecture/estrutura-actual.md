@@ -56,6 +56,15 @@ O backend usa `firebase-admin` SDK com service account. A variável de ambiente 
 Frontend → POST /contactos → [ValidationPipe] → ContactosController → ContactosService → Firestore (colecção "contactos")
 ```
 
+## Ficheiros de configuração do frontend
+- `.env` (raiz) — contém `VITE_API_URL` para apontar o frontend para o backend (não versionado)
+- `.env.example` (raiz) — template para o `.env` (versionado)
+
+## Fluxo completo de contactos (actualizado)
+```
+Contactos.tsx → fetch POST → /contactos → [ValidationPipe] → ContactosController → ContactosService → Firestore (colecção "contactos") + notificação email
+```
+
 ## Próximos passos previstos
 - Criar outros módulos de negócio no backend (projectos, etc.)
-- Configurar deploy no Render
+- Configurar deploy no Render (backend) e Firebase Hosting (frontend)

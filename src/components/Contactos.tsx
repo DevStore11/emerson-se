@@ -1,4 +1,5 @@
-    import { Mail, MapPin, Send } from "lucide-react";
+import { useState } from "react";
+import { Mail, MapPin, Send, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 
 const LinkedinIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -13,6 +14,38 @@ const GithubIcon = () => (
 );
 
 export function Contact() {
+  const [nome, setNome] = useState("");
+  const [email, setEmail] = useState("");
+  const [mensagem, setMensagem] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/contactos`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ nome, email, mensagem }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Erro ao enviar");
+      }
+
+      setStatus("success");
+      setNome("");
+      setEmail("");
+      setMensagem("");
+    } catch {
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contato" className="py-24 pb-40 relative">
        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-brand-purple/10 rounded-full blur-[120px] pointer-events-none" />
@@ -59,21 +92,34 @@ export function Contact() {
         </div>
 
         <div className="glass-card p-10 border-white/10">
-           <form className="space-y-6">
+          {status === "success" ? (
+            <div className="text-center py-8">
+              <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
+              <p className="text-lg font-medium text-white">Mensagem enviada!</p>
+              <p className="text-white/60 mt-2">Entrarei em contacto em breve.</p>
+            </div>
+          ) : (
+           <form className="space-y-6" onSubmit={handleSubmit}>
              <div className="grid grid-cols-2 gap-6">
                <div className="space-y-2">
                  <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">NOME</label>
                  <input 
-                   type="text" 
+                   type="text"
+                   name="nome"
                    placeholder="Seu nome"
+                   value={nome}
+                   onChange={(e) => setNome(e.target.value)}
                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-purple/50 transition-colors"
                  />
                </div>
                <div className="space-y-2">
                  <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">EMAIL</label>
                  <input 
-                   type="email" 
+                   type="email"
+                   name="email"
                    placeholder="seu@email.com"
+                   value={email}
+                   onChange={(e) => setEmail(e.target.value)}
                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-purple/50 transition-colors"
                  />
                </div>
@@ -82,14 +128,32 @@ export function Contact() {
                <label className="text-[10px] uppercase tracking-widest text-white/40 font-bold">MENSAGEM</label>
                <textarea 
                  rows={5}
+                 name="mensagem"
                  placeholder="Como posso ajudar?"
+                 value={mensagem}
+                 onChange={(e) => setMensagem(e.target.value)}
                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-purple/50 transition-colors resize-none"
                />
              </div>
-             <button className="w-full py-4 bg-brand-purple text-dark-bg font-bold rounded-lg hover:bg-brand-purple/90 transition-all flex justify-center items-center gap-2">
-               Enviar Mensagem <Send className="w-4 h-4" />
+             <button
+               type="submit"
+               disabled={status === "loading"}
+               className="w-full py-4 bg-brand-purple text-dark-bg font-bold rounded-lg hover:bg-brand-purple/90 transition-all flex justify-center items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+             >
+               {status === "loading" ? (
+                 <>A enviar... <Loader2 className="w-4 h-4 animate-spin" /></>
+               ) : (
+                 <>Enviar Mensagem <Send className="w-4 h-4" /></>
+               )}
              </button>
+             {status === "error" && (
+               <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm">
+                 <AlertCircle className="w-4 h-4 shrink-0" />
+                 <span>Não foi possível enviar. Tenta novamente ou usa o email directamente.</span>
+               </div>
+             )}
            </form>
+          )}
         </div>
       </div>
     </section>
